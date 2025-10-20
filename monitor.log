@@ -1,0 +1,5 @@
+2025-10-19 18:37:09,050 - INFO - Starting monitor run. Reading from: sites.txt
+2025-10-19 18:37:11,482 - INFO - [UP] https://google.com is online!
+2025-10-19 18:37:11,992 - INFO - [UP] https://github.com is online!
+2025-10-19 18:37:12,461 - ERROR - [DOWN] https://this-site-does-not-exist-123.com failed to connect.
+2025-10-19 18:37:12,461 - INFO - Monitor run finished.
