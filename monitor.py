@@ -15,14 +15,14 @@ def setup_logging(log_file):
         ]
     )
 
-def check_url(url):
+def check_url(url, timeout_seconds):
     """Checks a single URL and logs its status."""
     try:
         url = url.strip()
         if not url.startswith(('http://', 'https://')):
             url = f'https://{url}' # Add https:// if missing
             
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, timeout=timeout_seconds)
         
         if response.status_code == 200:
             logging.info(f"[UP] {url} is online!")
@@ -51,8 +51,16 @@ if __name__ == "__main__":
         help="Path to the output log file."
     )
     
+    parser.add_argument(
+        '-t', '--timeout',
+        type=int,
+        default=5,
+        help="for giving timeout"
+    )
+
     args = parser.parse_args()
     
+
     # 2. Set up logging
     setup_logging(args.log)
     
@@ -67,7 +75,7 @@ if __name__ == "__main__":
             sys.exit(1)
 
         for url in urls:
-            check_url(url)
+            check_url(url, args.timeout)
         
         logging.info("Monitor run finished.")
 
